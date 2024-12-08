@@ -10,18 +10,16 @@ export function usePeopleList(options: UsePeopleListOptions = {}) {
   const { searchTerm } = options;
   
   const query = useQuery<Person[]>({
-    queryKey: ['people', searchTerm],
+    queryKey: ['people'],
     queryFn: async () => {
       const response = await PeopleClient.peopleControllerFindAll();
-      const people = response.data;
-
-      if (searchTerm) {
-        return people.filter(person =>
-          person.name.toLowerCase().includes(searchTerm.toLowerCase())
-        );
-      }
-
-      return people;
+      return response.data;
+    },
+    select: (data) => {
+      if (!searchTerm) return data;
+      return data.filter(person =>
+        person.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
     },
   });
 
@@ -40,7 +38,7 @@ export function usePeopleById(id: number) {
       const response = await PeopleClient.peopleControllerFindOne(id);
       return response.data;
     },
-    enabled: !!id, // Only run the query if we have an ID
+    enabled: !!id,
   });
 
   return {

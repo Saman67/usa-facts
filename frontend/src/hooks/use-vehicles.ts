@@ -10,18 +10,16 @@ export function useVehiclesList(options: UseVehiclesListOptions = {}) {
   const { searchTerm } = options;
   
   const query = useQuery<Vehicle[]>({
-    queryKey: ['vehicles', searchTerm],
+    queryKey: ['vehicles'],
     queryFn: async () => {
       const response = await VehiclesClient.vehiclesControllerFindAll();
-      const vehicles = response.data;
-
-      if (searchTerm) {
-        return vehicles.filter(vehicle =>
-          vehicle.name.toLowerCase().includes(searchTerm.toLowerCase())
-        );
-      }
-
-      return vehicles;
+      return response.data;
+    },
+    select: (data) => {
+      if (!searchTerm) return data;
+      return data.filter(vehicle =>
+        vehicle.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
     },
   });
 

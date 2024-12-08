@@ -10,18 +10,16 @@ export function useStarshipsList(options: UseStarshipsListOptions = {}) {
   const { searchTerm } = options;
   
   const query = useQuery<Starship[]>({
-    queryKey: ['starships', searchTerm],
+    queryKey: ['starships'],
     queryFn: async () => {
       const response = await StarshipsClient.starshipsControllerFindAll();
-      const starships = response.data;
-
-      if (searchTerm) {
-        return starships.filter(starship =>
-          starship.name.toLowerCase().includes(searchTerm.toLowerCase())
-        );
-      }
-
-      return starships;
+      return response.data;
+    },
+    select: (data) => {
+      if (!searchTerm) return data;
+      return data.filter(starship =>
+        starship.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
     },
   });
 

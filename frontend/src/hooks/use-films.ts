@@ -10,18 +10,16 @@ export function useFilmsList(options: UseFilmsListOptions = {}) {
   const { searchTerm } = options;
   
   const query = useQuery<Film[]>({
-    queryKey: ['films', searchTerm],
+    queryKey: ['films'],
     queryFn: async () => {
       const response = await FilmsClient.filmsControllerFindAll();
-      const films = response.data;
-
-      if (searchTerm) {
-        return films.filter(film =>
-          film.title.toLowerCase().includes(searchTerm.toLowerCase())
-        );
-      }
-
-      return films;
+      return response.data;
+    },
+    select: (data) => {
+      if (!searchTerm) return data;
+      return data.filter(film =>
+        film.title.toLowerCase().includes(searchTerm.toLowerCase())
+      );
     },
   });
 

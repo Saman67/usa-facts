@@ -10,18 +10,16 @@ export function usePlanetsList(options: UsePlanetsListOptions = {}) {
   const { searchTerm } = options;
   
   const query = useQuery<Planet[]>({
-    queryKey: ['planets', searchTerm],
+    queryKey: ['planets'],
     queryFn: async () => {
       const response = await PlanetsClient.planetsControllerFindAll();
-      const planets = response.data;
-
-      if (searchTerm) {
-        return planets.filter(planet =>
-          planet.name.toLowerCase().includes(searchTerm.toLowerCase())
-        );
-      }
-
-      return planets;
+      return response.data;
+    },
+    select: (data) => {
+      if (!searchTerm) return data;
+      return data.filter(planet =>
+        planet.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
     },
   });
 

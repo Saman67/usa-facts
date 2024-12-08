@@ -10,18 +10,16 @@ export function useSpeciesList(options: UseSpeciesListOptions = {}) {
   const { searchTerm } = options;
   
   const query = useQuery<Species[]>({
-    queryKey: ['species', searchTerm],
+    queryKey: ['species'],
     queryFn: async () => {
       const response = await SpeciesClient.speciesControllerFindAll();
-      const species = response.data;
-
-      if (searchTerm) {
-        return species.filter(s =>
-          s.name.toLowerCase().includes(searchTerm.toLowerCase())
-        );
-      }
-
-      return species;
+      return response.data;
+    },
+    select: (data) => {
+      if (!searchTerm) return data;
+      return data.filter(species =>
+        species.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
     },
   });
 
