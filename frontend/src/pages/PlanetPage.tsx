@@ -11,6 +11,7 @@ import {
 } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { usePlanetById } from '../hooks/use-planets';
+import { SEO } from '../components/SEO';
 
 const PlanetPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -56,6 +57,10 @@ const PlanetPage = () => {
   if (!planet) {
     return (
       <Box>
+        <SEO 
+          title="Planet Not Found"
+          description="The requested Star Wars planet could not be found."
+        />
         <Button
           startIcon={<ArrowBackIcon />}
           onClick={handleBack}
@@ -69,62 +74,69 @@ const PlanetPage = () => {
   }
 
   return (
-    <Box>
-      <Button
-        startIcon={<ArrowBackIcon />}
-        onClick={handleBack}
-        sx={{ mb: 3 }}
-      >
-        Back to Planets
-      </Button>
+    <>
+      <SEO 
+        title={planet.name}
+        description={`Explore ${planet.name}, a planet in the Star Wars galaxy. With a population of ${parseInt(planet.population).toLocaleString()}, this ${planet.terrain} world has a ${planet.climate} climate.`}
+        type="place"
+      />
+      <Box>
+        <Button
+          startIcon={<ArrowBackIcon />}
+          onClick={handleBack}
+          sx={{ mb: 3 }}
+        >
+          Back to Planets
+        </Button>
 
-      <Card sx={{ mb: 4 }}>
-        <CardContent>
-          <Typography variant="h4" component="h1" gutterBottom color="primary">
-            {planet.name}
-          </Typography>
+        <Card sx={{ mb: 4 }}>
+          <CardContent>
+            <Typography variant="h4" component="h1" gutterBottom color="primary">
+              {planet.name}
+            </Typography>
 
-          <Grid container spacing={3}>
-            <Grid item xs={12} md={6}>
-              <Typography variant="h6" gutterBottom color="primary">
-                Physical Characteristics
-              </Typography>
-              <Typography variant="body1" paragraph>
-                <strong>Climate:</strong> {planet.climate}
-              </Typography>
-              <Typography variant="body1" paragraph>
-                <strong>Terrain:</strong> {planet.terrain}
-              </Typography>
-              <Typography variant="body1" paragraph>
-                <strong>Surface Water:</strong> {planet.surface_water}%
-              </Typography>
-              <Typography variant="body1" paragraph>
-                <strong>Diameter:</strong> {parseInt(planet.diameter).toLocaleString()} km
-              </Typography>
+            <Grid container spacing={3}>
+              <Grid item xs={12} md={6}>
+                <Typography variant="h6" gutterBottom color="primary">
+                  Physical Characteristics
+                </Typography>
+                <Typography variant="body1" paragraph>
+                  <strong>Climate:</strong> {planet.climate}
+                </Typography>
+                <Typography variant="body1" paragraph>
+                  <strong>Terrain:</strong> {planet.terrain}
+                </Typography>
+                <Typography variant="body1" paragraph>
+                  <strong>Surface Water:</strong> {planet.surface_water}%
+                </Typography>
+                <Typography variant="body1" paragraph>
+                  <strong>Diameter:</strong> {parseInt(planet.diameter).toLocaleString()} km
+                </Typography>
+              </Grid>
+
+              <Grid item xs={12} md={6}>
+                <Typography variant="h6" gutterBottom color="primary">
+                  Planetary Data
+                </Typography>
+                <Typography variant="body1" paragraph>
+                  <strong>Population:</strong>{' '}
+                  {parseInt(planet.population).toLocaleString() || 'Unknown'}
+                </Typography>
+                <Typography variant="body1" paragraph>
+                  <strong>Rotation Period:</strong> {planet.rotation_period} hours
+                </Typography>
+                <Typography variant="body1" paragraph>
+                  <strong>Orbital Period:</strong> {planet.orbital_period} days
+                </Typography>
+                <Typography variant="body1" paragraph>
+                  <strong>Gravity:</strong> {planet.gravity}
+                </Typography>
+              </Grid>
             </Grid>
-
-            <Grid item xs={12} md={6}>
-              <Typography variant="h6" gutterBottom color="primary">
-                Planetary Data
-              </Typography>
-              <Typography variant="body1" paragraph>
-                <strong>Population:</strong>{' '}
-                {parseInt(planet.population).toLocaleString() || 'Unknown'}
-              </Typography>
-              <Typography variant="body1" paragraph>
-                <strong>Rotation Period:</strong> {planet.rotation_period} hours
-              </Typography>
-              <Typography variant="body1" paragraph>
-                <strong>Orbital Period:</strong> {planet.orbital_period} days
-              </Typography>
-              <Typography variant="body1" paragraph>
-                <strong>Gravity:</strong> {planet.gravity}
-              </Typography>
-            </Grid>
-          </Grid>
-        </CardContent>
-      </Card>
-    </Box>
+          </CardContent>
+        </Card>
+      </Box>
+    </>
   );
 };
 

@@ -11,6 +11,7 @@ import {
 } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useStarshipById } from '../hooks/use-starships';
+import { SEO } from '../components/SEO';
 
 const StarshipPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -56,6 +57,10 @@ const StarshipPage = () => {
   if (!starship) {
     return (
       <Box>
+        <SEO 
+          title="Starship Not Found"
+          description="The requested Star Wars starship could not be found."
+        />
         <Button
           startIcon={<ArrowBackIcon />}
           onClick={handleBack}
@@ -69,81 +74,88 @@ const StarshipPage = () => {
   }
 
   return (
-    <Box>
-      <Button
-        startIcon={<ArrowBackIcon />}
-        onClick={handleBack}
-        sx={{ mb: 3 }}
-      >
-        Back to Starships
-      </Button>
+    <>
+      <SEO 
+        title={starship.name}
+        description={`Explore the ${starship.name}, a ${starship.starship_class} class starship manufactured by ${starship.manufacturer}. This ${starship.model} model features a hyperdrive rating of ${starship.hyperdrive_rating}.`}
+        type="vehicle"
+      />
+      <Box>
+        <Button
+          startIcon={<ArrowBackIcon />}
+          onClick={handleBack}
+          sx={{ mb: 3 }}
+        >
+          Back to Starships
+        </Button>
 
-      <Card sx={{ mb: 4 }}>
-        <CardContent>
-          <Typography variant="h4" component="h1" gutterBottom color="primary">
-            {starship.name}
-          </Typography>
+        <Card sx={{ mb: 4 }}>
+          <CardContent>
+            <Typography variant="h4" component="h1" gutterBottom color="primary">
+              {starship.name}
+            </Typography>
 
-          <Grid container spacing={3}>
-            <Grid item xs={12} md={6}>
-              <Typography variant="h6" gutterBottom color="primary">
-                Basic Information
-              </Typography>
-              <Typography variant="body1" paragraph>
-                <strong>Model:</strong> {starship.model}
-              </Typography>
-              <Typography variant="body1" paragraph>
-                <strong>Manufacturer:</strong> {starship.manufacturer}
-              </Typography>
-              <Typography variant="body1" paragraph>
-                <strong>Class:</strong> {starship.starship_class}
-              </Typography>
-              <Typography variant="body1" paragraph>
-                <strong>Cost:</strong>{' '}
-                {parseInt(starship.cost_in_credits).toLocaleString()} credits
-              </Typography>
+            <Grid container spacing={3}>
+              <Grid item xs={12} md={6}>
+                <Typography variant="h6" gutterBottom color="primary">
+                  Basic Information
+                </Typography>
+                <Typography variant="body1" paragraph>
+                  <strong>Model:</strong> {starship.model}
+                </Typography>
+                <Typography variant="body1" paragraph>
+                  <strong>Manufacturer:</strong> {starship.manufacturer}
+                </Typography>
+                <Typography variant="body1" paragraph>
+                  <strong>Class:</strong> {starship.starship_class}
+                </Typography>
+                <Typography variant="body1" paragraph>
+                  <strong>Cost:</strong>{' '}
+                  {parseInt(starship.cost_in_credits).toLocaleString()} credits
+                </Typography>
+              </Grid>
+
+              <Grid item xs={12} md={6}>
+                <Typography variant="h6" gutterBottom color="primary">
+                  Specifications
+                </Typography>
+                <Typography variant="body1" paragraph>
+                  <strong>Length:</strong> {starship.length} meters
+                </Typography>
+                <Typography variant="body1" paragraph>
+                  <strong>Max Speed:</strong> {starship.max_atmosphering_speed}
+                </Typography>
+                <Typography variant="body1" paragraph>
+                  <strong>Hyperdrive Rating:</strong> {starship.hyperdrive_rating}
+                </Typography>
+                <Typography variant="body1" paragraph>
+                  <strong>MGLT:</strong> {starship.MGLT}
+                </Typography>
+              </Grid>
+
+              <Grid item xs={12} md={6}>
+                <Typography variant="h6" gutterBottom color="primary">
+                  Capacity
+                </Typography>
+                <Typography variant="body1" paragraph>
+                  <strong>Crew:</strong> {starship.crew}
+                </Typography>
+                <Typography variant="body1" paragraph>
+                  <strong>Passengers:</strong> {starship.passengers}
+                </Typography>
+                <Typography variant="body1" paragraph>
+                  <strong>Cargo Capacity:</strong>{' '}
+                  {parseInt(starship.cargo_capacity).toLocaleString()} kg
+                </Typography>
+                <Typography variant="body1" paragraph>
+                  <strong>Consumables:</strong> {starship.consumables}
+                </Typography>
+              </Grid>
             </Grid>
-
-            <Grid item xs={12} md={6}>
-              <Typography variant="h6" gutterBottom color="primary">
-                Specifications
-              </Typography>
-              <Typography variant="body1" paragraph>
-                <strong>Length:</strong> {starship.length} meters
-              </Typography>
-              <Typography variant="body1" paragraph>
-                <strong>Max Speed:</strong> {starship.max_atmosphering_speed}
-              </Typography>
-              <Typography variant="body1" paragraph>
-                <strong>Hyperdrive Rating:</strong> {starship.hyperdrive_rating}
-              </Typography>
-              <Typography variant="body1" paragraph>
-                <strong>MGLT:</strong> {starship.MGLT}
-              </Typography>
-            </Grid>
-
-            <Grid item xs={12} md={6}>
-              <Typography variant="h6" gutterBottom color="primary">
-                Capacity
-              </Typography>
-              <Typography variant="body1" paragraph>
-                <strong>Crew:</strong> {starship.crew}
-              </Typography>
-              <Typography variant="body1" paragraph>
-                <strong>Passengers:</strong> {starship.passengers}
-              </Typography>
-              <Typography variant="body1" paragraph>
-                <strong>Cargo Capacity:</strong>{' '}
-                {parseInt(starship.cargo_capacity).toLocaleString()} kg
-              </Typography>
-              <Typography variant="body1" paragraph>
-                <strong>Consumables:</strong> {starship.consumables}
-              </Typography>
-            </Grid>
-          </Grid>
-        </CardContent>
-      </Card>
-    </Box>
+          </CardContent>
+        </Card>
+      </Box>
+    </>
   );
 };
 

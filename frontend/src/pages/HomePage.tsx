@@ -13,6 +13,7 @@ import PublicIcon from '@mui/icons-material/Public';
 import PetsIcon from '@mui/icons-material/Pets';
 import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
+import { SEO } from '../components/SEO';
 
 const categories = [
   {
@@ -57,64 +58,71 @@ const HomePage = () => {
   const navigate = useNavigate();
 
   return (
-    <Box>
-      <Typography
-        variant="h3"
-        component="h1"
-        gutterBottom
-        sx={{
-          textAlign: 'center',
-          color: 'primary.main',
-          mb: 6,
-          fontWeight: 'bold',
-        }}
-      >
-        Star Wars Explorer
-      </Typography>
+    <>
+      <SEO 
+        title="Star Wars Universe Explorer"
+        description="Your gateway to the Star Wars galaxy. Explore characters, films, planets, species, starships, and vehicles from the iconic saga."
+        type="website"
+      />
+      <Box>
+        <Typography
+          variant="h3"
+          component="h1"
+          gutterBottom
+          sx={{
+            textAlign: 'center',
+            color: 'primary.main',
+            mb: 6,
+            fontWeight: 'bold',
+          }}
+        >
+          Star Wars Explorer
+        </Typography>
 
-      <Grid container spacing={4} justifyContent="center">
-        {categories.map((category) => {
-          const Icon = category.icon;
-          return (
-            <Grid item xs={12} sm={6} md={4} key={category.title}>
-              <Card
-                sx={{
-                  height: '100%',
-                  transition: 'transform 0.2s',
-                  '&:hover': {
-                    transform: 'scale(1.02)',
-                    boxShadow: 6,
-                  },
-                }}
-              >
-                <CardActionArea
-                  onClick={() => navigate(category.path)}
-                  sx={{ height: '100%', p: 2 }}
+        <Grid container spacing={4} justifyContent="center">
+          {categories.map((category) => {
+            const Icon = category.icon;
+            return (
+              <Grid item xs={12} sm={6} md={4} key={category.title}>
+                <Card
+                  sx={{
+                    height: '100%',
+                    transition: 'transform 0.2s',
+                    '&:hover': {
+                      transform: 'scale(1.02)',
+                      boxShadow: 6,
+                    },
+                  }}
                 >
-                  <CardContent
-                    sx={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'center',
-                      textAlign: 'center',
-                      height: '100%',
-                    }}
+                  <CardActionArea
+                    onClick={() => navigate(category.path)}
+                    sx={{ height: '100%', p: 2 }}
                   >
-                    <Icon sx={{ fontSize: 60, color: 'primary.main', mb: 2 }} />
-                    <Typography variant="h5" component="h2" gutterBottom>
-                      {category.title}
-                    </Typography>
-                    <Typography variant="body1" color="text.secondary">
-                      {category.description}
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
-              </Card>
-            </Grid>
-          );
-        })}
-      </Grid>
-    </Box>
+                    <CardContent
+                      sx={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        textAlign: 'center',
+                        height: '100%',
+                      }}
+                    >
+                      <Icon sx={{ fontSize: 60, color: 'primary.main', mb: 2 }} />
+                      <Typography variant="h5" component="h2" gutterBottom>
+                        {category.title}
+                      </Typography>
+                      <Typography variant="body1" color="text.secondary">
+                        {category.description}
+                      </Typography>
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+              </Grid>
+            );
+          })}
+        </Grid>
+      </Box>
+    </>
   );
 };
 

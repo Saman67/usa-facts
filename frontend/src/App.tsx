@@ -17,6 +17,7 @@ import VehiclePage from './pages/VehiclePage';
 import Breadcrumb from './components/Breadcrumb';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import { HelmetProvider } from 'react-helmet-async';
 
 const theme = createTheme({
   palette: {
@@ -59,66 +60,68 @@ const queryClient = new QueryClient({
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <GlobalStyles
-          styles={{
-            'html, body': {
-              margin: 0,
-              padding: 0,
-              minHeight: '100vh',
-              width: '100%',
-            },
-          }}
-        />
-        <Router>
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              minHeight: '100vh',
-              width: '100%',
-              margin: 0,
-              padding: 0,
+    <HelmetProvider>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <GlobalStyles
+            styles={{
+              'html, body': {
+                margin: 0,
+                padding: 0,
+                minHeight: '100vh',
+                width: '100%',
+              },
             }}
-          >
-            <Header />
-            <Container
-              component="main"
-              maxWidth="lg"
+          />
+          <Router>
+            <Box
               sx={{
-                flex: 1,
                 display: 'flex',
                 flexDirection: 'column',
-                py: 3,
-                px: { xs: 2, sm: 3 },
+                minHeight: '100vh',
+                width: '100%',
+                margin: 0,
+                padding: 0,
               }}
             >
-              <Box sx={{ mb: 2 }}>
-                <Breadcrumb />
-              </Box>
-              <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/people" element={<PeoplePage />} />
-                <Route path="/people/:id" element={<PersonPage />} />
-                <Route path="/films" element={<FilmsPage />} />
-                <Route path="/films/:id" element={<FilmPage />} />
-                <Route path="/planets" element={<PlanetsPage />} />
-                <Route path="/planets/:id" element={<PlanetPage />} />
-                <Route path="/species" element={<SpeciesPage />} />
-                <Route path="/species/:id" element={<SpeciesDetailPage />} />
-                <Route path="/starships" element={<StarshipsPage />} />
-                <Route path="/starships/:id" element={<StarshipPage />} />
-                <Route path="/vehicles" element={<VehiclesPage />} />
-                <Route path="/vehicles/:id" element={<VehiclePage />} />
-              </Routes>
-            </Container>
-            <Footer />
-          </Box>
-        </Router>
-      </ThemeProvider>
-    </QueryClientProvider>
+              <Header />
+              <Container
+                component="main"
+                maxWidth="lg"
+                sx={{
+                  flex: 1,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  py: 3,
+                  px: { xs: 2, sm: 3 },
+                }}
+              >
+                <Box sx={{ mb: 2 }}>
+                  <Breadcrumb />
+                </Box>
+                <Routes>
+                  <Route path="/" element={<HomePage />} />
+                  <Route path="/people" element={<PeoplePage />} />
+                  <Route path="/people/:id" element={<PersonPage />} />
+                  <Route path="/films" element={<FilmsPage />} />
+                  <Route path="/films/:id" element={<FilmPage />} />
+                  <Route path="/planets" element={<PlanetsPage />} />
+                  <Route path="/planets/:id" element={<PlanetPage />} />
+                  <Route path="/species" element={<SpeciesPage />} />
+                  <Route path="/species/:id" element={<SpeciesDetailPage />} />
+                  <Route path="/starships" element={<StarshipsPage />} />
+                  <Route path="/starships/:id" element={<StarshipPage />} />
+                  <Route path="/vehicles" element={<VehiclesPage />} />
+                  <Route path="/vehicles/:id" element={<VehiclePage />} />
+                </Routes>
+              </Container>
+              <Footer />
+            </Box>
+          </Router>
+        </ThemeProvider>
+      </QueryClientProvider>
+    </HelmetProvider>
   );
 }
 
