@@ -1,0 +1,1119 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/": {
+      "get": {
+        "operationId": "AppController_getHello",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "App"
+        ]
+      }
+    },
+    "/films": {
+      "get": {
+        "description": "Retrieve a list of all Star Wars films",
+        "operationId": "FilmsController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "List of all Star Wars films",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Film"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get all films",
+        "tags": [
+          "films"
+        ]
+      }
+    },
+    "/films/{id}": {
+      "get": {
+        "description": "Retrieve a specific Star Wars film by its ID",
+        "operationId": "FilmsController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "The ID of the film",
+            "schema": {
+              "example": 1,
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The film with the specified ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Film"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Film not found"
+          }
+        },
+        "summary": "Get a film by ID",
+        "tags": [
+          "films"
+        ]
+      }
+    },
+    "/people": {
+      "get": {
+        "description": "Retrieve a list of all Star Wars characters",
+        "operationId": "PeopleController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "List of all Star Wars characters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Person"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get all people",
+        "tags": [
+          "people"
+        ]
+      }
+    },
+    "/people/{id}": {
+      "get": {
+        "description": "Retrieve a specific Star Wars character by their ID",
+        "operationId": "PeopleController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "The ID of the person",
+            "schema": {
+              "example": 1,
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The character with the specified ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Person"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Character not found"
+          }
+        },
+        "summary": "Get a person by ID",
+        "tags": [
+          "people"
+        ]
+      }
+    },
+    "/planets": {
+      "get": {
+        "description": "Retrieve a list of all Star Wars planets",
+        "operationId": "PlanetsController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "List of all Star Wars planets",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Planet"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get all planets",
+        "tags": [
+          "planets"
+        ]
+      }
+    },
+    "/planets/{id}": {
+      "get": {
+        "description": "Retrieve a specific Star Wars planet by its ID",
+        "operationId": "PlanetsController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "The ID of the planet",
+            "schema": {
+              "example": 1,
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The planet with the specified ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Planet"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Planet not found"
+          }
+        },
+        "summary": "Get a planet by ID",
+        "tags": [
+          "planets"
+        ]
+      }
+    },
+    "/species": {
+      "get": {
+        "description": "Retrieve a list of all Star Wars species",
+        "operationId": "SpeciesController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "List of all Star Wars species",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Species"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get all species",
+        "tags": [
+          "species"
+        ]
+      }
+    },
+    "/species/{id}": {
+      "get": {
+        "description": "Retrieve a specific Star Wars species by its ID",
+        "operationId": "SpeciesController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "The ID of the species",
+            "schema": {
+              "example": 1,
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The species with the specified ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Species"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Species not found"
+          }
+        },
+        "summary": "Get a species by ID",
+        "tags": [
+          "species"
+        ]
+      }
+    },
+    "/starships": {
+      "get": {
+        "description": "Retrieve a list of all Star Wars starships",
+        "operationId": "StarshipsController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "List of all Star Wars starships",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Starship"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get all starships",
+        "tags": [
+          "starships"
+        ]
+      }
+    },
+    "/starships/{id}": {
+      "get": {
+        "description": "Retrieve a specific Star Wars starship by its ID",
+        "operationId": "StarshipsController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "The ID of the starship",
+            "schema": {
+              "example": 1,
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The starship with the specified ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Starship"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Starship not found"
+          }
+        },
+        "summary": "Get a starship by ID",
+        "tags": [
+          "starships"
+        ]
+      }
+    },
+    "/vehicles": {
+      "get": {
+        "description": "Retrieve a list of all Star Wars vehicles",
+        "operationId": "VehiclesController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "List of all Star Wars vehicles",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Vehicle"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get all vehicles",
+        "tags": [
+          "vehicles"
+        ]
+      }
+    },
+    "/vehicles/{id}": {
+      "get": {
+        "description": "Retrieve a specific Star Wars vehicle by its ID",
+        "operationId": "VehiclesController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "The ID of the vehicle",
+            "schema": {
+              "example": 1,
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The vehicle with the specified ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Vehicle"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Vehicle not found"
+          }
+        },
+        "summary": "Get a vehicle by ID",
+        "tags": [
+          "vehicles"
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "Star Wars API",
+    "description": "The Star Wars API documentation",
+    "version": "1.0",
+    "contact": {}
+  },
+  "tags": [
+    {
+      "name": "films",
+      "description": "Star Wars films endpoints"
+    },
+    {
+      "name": "people",
+      "description": "Star Wars characters endpoints"
+    },
+    {
+      "name": "planets",
+      "description": "Star Wars planets endpoints"
+    },
+    {
+      "name": "species",
+      "description": "Star Wars species endpoints"
+    },
+    {
+      "name": "starships",
+      "description": "Star Wars starships endpoints"
+    },
+    {
+      "name": "vehicles",
+      "description": "Star Wars vehicles endpoints"
+    }
+  ],
+  "servers": [],
+  "components": {
+    "schemas": {
+      "Film": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "example": "A New Hope",
+            "description": "The title of the film"
+          },
+          "episode_id": {
+            "type": "number",
+            "example": 4,
+            "description": "The episode number of the film"
+          },
+          "opening_crawl": {
+            "type": "string",
+            "example": "It is a period of civil war...",
+            "description": "The opening crawl text of the film"
+          },
+          "director": {
+            "type": "string",
+            "example": "George Lucas",
+            "description": "The director of the film"
+          },
+          "producer": {
+            "type": "string",
+            "example": "Gary Kurtz, Rick McCallum",
+            "description": "The producer(s) of the film"
+          },
+          "release_date": {
+            "type": "string",
+            "example": "1977-05-25",
+            "description": "The release date of the film"
+          },
+          "characters": {
+            "example": [
+              "https://swapi.dev/api/people/1/"
+            ],
+            "description": "URLs of characters that appear in the film",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "planets": {
+            "example": [
+              "https://swapi.dev/api/planets/1/"
+            ],
+            "description": "URLs of planets that appear in the film",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "starships": {
+            "example": [
+              "https://swapi.dev/api/starships/2/"
+            ],
+            "description": "URLs of starships that appear in the film",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "vehicles": {
+            "example": [
+              "https://swapi.dev/api/vehicles/4/"
+            ],
+            "description": "URLs of vehicles that appear in the film",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "species": {
+            "example": [
+              "https://swapi.dev/api/species/1/"
+            ],
+            "description": "URLs of species that appear in the film",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "created": {
+            "type": "string",
+            "example": "2014-12-10T14:23:31.880000Z",
+            "description": "The ISO 8601 date format of when this resource was created"
+          },
+          "edited": {
+            "type": "string",
+            "example": "2014-12-20T19:49:45.256000Z",
+            "description": "The ISO 8601 date format of when this resource was edited"
+          },
+          "url": {
+            "type": "string",
+            "example": "https://swapi.dev/api/films/1/",
+            "description": "The URL of this resource"
+          }
+        },
+        "required": [
+          "title",
+          "episode_id",
+          "opening_crawl",
+          "director",
+          "producer",
+          "release_date",
+          "characters",
+          "planets",
+          "starships",
+          "vehicles",
+          "species",
+          "created",
+          "edited",
+          "url"
+        ]
+      },
+      "Person": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Luke Skywalker",
+            "description": "The name of this person"
+          },
+          "height": {
+            "type": "string",
+            "example": "172",
+            "description": "The height of this person in centimeters"
+          },
+          "mass": {
+            "type": "string",
+            "example": "77",
+            "description": "The mass of this person in kilograms"
+          },
+          "hair_color": {
+            "type": "string",
+            "example": "blond",
+            "description": "The hair color of this person"
+          },
+          "skin_color": {
+            "type": "string",
+            "example": "fair",
+            "description": "The skin color of this person"
+          },
+          "eye_color": {
+            "type": "string",
+            "example": "blue",
+            "description": "The eye color of this person"
+          },
+          "birth_year": {
+            "type": "string",
+            "example": "19BBY",
+            "description": "The birth year of this person"
+          },
+          "gender": {
+            "type": "string",
+            "example": "male",
+            "description": "The gender of this person"
+          },
+          "homeworld": {
+            "type": "string",
+            "example": "https://swapi.dev/api/planets/1/",
+            "description": "The URL of the homeworld of this person"
+          },
+          "films": {
+            "example": [
+              "https://swapi.dev/api/films/1/"
+            ],
+            "description": "URLs of films this person has been in",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "species": {
+            "example": [
+              "https://swapi.dev/api/species/1/"
+            ],
+            "description": "URLs of species this person belongs to",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "vehicles": {
+            "example": [
+              "https://swapi.dev/api/vehicles/14/"
+            ],
+            "description": "URLs of vehicles this person has piloted",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "starships": {
+            "example": [
+              "https://swapi.dev/api/starships/12/"
+            ],
+            "description": "URLs of starships this person has piloted",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "created": {
+            "type": "string",
+            "example": "2014-12-09T13:50:51.644000Z",
+            "description": "The ISO 8601 date format of when this resource was created"
+          },
+          "edited": {
+            "type": "string",
+            "example": "2014-12-20T21:17:56.891000Z",
+            "description": "The ISO 8601 date format of when this resource was edited"
+          },
+          "url": {
+            "type": "string",
+            "example": "https://swapi.dev/api/people/1/",
+            "description": "The URL of this resource"
+          }
+        },
+        "required": [
+          "name",
+          "height",
+          "mass",
+          "hair_color",
+          "skin_color",
+          "eye_color",
+          "birth_year",
+          "gender",
+          "homeworld",
+          "films",
+          "species",
+          "vehicles",
+          "starships",
+          "created",
+          "edited",
+          "url"
+        ]
+      },
+      "Planet": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Tatooine",
+            "description": "The name of this planet"
+          },
+          "rotation_period": {
+            "type": "string",
+            "example": "23",
+            "description": "The number of standard hours it takes for this planet to complete a single rotation on its axis"
+          },
+          "orbital_period": {
+            "type": "string",
+            "example": "304",
+            "description": "The number of standard days it takes for this planet to complete a single orbit of its local star"
+          },
+          "diameter": {
+            "type": "string",
+            "example": "10465",
+            "description": "The diameter of this planet in kilometers"
+          },
+          "climate": {
+            "type": "string",
+            "example": "arid",
+            "description": "The climate of this planet"
+          },
+          "gravity": {
+            "type": "string",
+            "example": "1 standard",
+            "description": "A number denoting the gravity of this planet"
+          },
+          "terrain": {
+            "type": "string",
+            "example": "desert",
+            "description": "The terrain of this planet"
+          },
+          "surface_water": {
+            "type": "string",
+            "example": "1",
+            "description": "The percentage of the planet surface that is naturally occurring water"
+          },
+          "population": {
+            "type": "string",
+            "example": "200000",
+            "description": "The average population of sentient beings inhabiting this planet"
+          },
+          "residents": {
+            "example": [
+              "https://swapi.dev/api/people/1/"
+            ],
+            "description": "URLs of people who have been residents on this planet",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "films": {
+            "example": [
+              "https://swapi.dev/api/films/1/"
+            ],
+            "description": "URLs of films that this planet has appeared in",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "created": {
+            "type": "string",
+            "example": "2014-12-09T13:50:49.641000Z",
+            "description": "The ISO 8601 date format of when this resource was created"
+          },
+          "edited": {
+            "type": "string",
+            "example": "2014-12-20T20:58:18.411000Z",
+            "description": "The ISO 8601 date format of when this resource was edited"
+          },
+          "url": {
+            "type": "string",
+            "example": "https://swapi.dev/api/planets/1/",
+            "description": "The URL of this resource"
+          }
+        },
+        "required": [
+          "name",
+          "rotation_period",
+          "orbital_period",
+          "diameter",
+          "climate",
+          "gravity",
+          "terrain",
+          "surface_water",
+          "population",
+          "residents",
+          "films",
+          "created",
+          "edited",
+          "url"
+        ]
+      },
+      "Species": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Human",
+            "description": "The name of this species"
+          },
+          "classification": {
+            "type": "string",
+            "example": "mammal",
+            "description": "The classification of this species"
+          },
+          "designation": {
+            "type": "string",
+            "example": "sentient",
+            "description": "The designation of this species"
+          },
+          "average_height": {
+            "type": "string",
+            "example": "180",
+            "description": "The average height of this species in centimeters"
+          },
+          "skin_colors": {
+            "type": "string",
+            "example": "caucasian, black, asian, hispanic",
+            "description": "The skin colors that occur naturally for this species"
+          },
+          "hair_colors": {
+            "type": "string",
+            "example": "blonde, brown, black, red",
+            "description": "The hair colors that occur naturally for this species"
+          },
+          "eye_colors": {
+            "type": "string",
+            "example": "brown, blue, green",
+            "description": "The eye colors that occur naturally for this species"
+          },
+          "average_lifespan": {
+            "type": "string",
+            "example": "120",
+            "description": "The average lifespan of this species in years"
+          },
+          "homeworld": {
+            "type": "string",
+            "example": "https://swapi.dev/api/planets/1/",
+            "description": "The URL of the planet that this species originates from"
+          },
+          "language": {
+            "type": "string",
+            "example": "Galactic Basic",
+            "description": "The language commonly spoken by this species"
+          },
+          "people": {
+            "example": [
+              "https://swapi.dev/api/people/1/"
+            ],
+            "description": "URLs of people that are a part of this species",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "films": {
+            "example": [
+              "https://swapi.dev/api/films/1/"
+            ],
+            "description": "URLs of films that this species has appeared in",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "created": {
+            "type": "string",
+            "example": "2014-12-10T13:52:11.567000Z",
+            "description": "The ISO 8601 date format of when this resource was created"
+          },
+          "edited": {
+            "type": "string",
+            "example": "2014-12-20T21:36:42.136000Z",
+            "description": "The ISO 8601 date format of when this resource was edited"
+          },
+          "url": {
+            "type": "string",
+            "example": "https://swapi.dev/api/species/1/",
+            "description": "The URL of this resource"
+          }
+        },
+        "required": [
+          "name",
+          "classification",
+          "designation",
+          "average_height",
+          "skin_colors",
+          "hair_colors",
+          "eye_colors",
+          "average_lifespan",
+          "homeworld",
+          "language",
+          "people",
+          "films",
+          "created",
+          "edited",
+          "url"
+        ]
+      },
+      "Starship": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Death Star",
+            "description": "The name of this starship"
+          },
+          "model": {
+            "type": "string",
+            "example": "DS-1 Orbital Battle Station",
+            "description": "The model or official name of this starship"
+          },
+          "starship_class": {
+            "type": "string",
+            "example": "Deep Space Mobile Battlestation",
+            "description": "The class of this starship"
+          },
+          "manufacturer": {
+            "type": "string",
+            "example": "Imperial Department of Military Research",
+            "description": "The manufacturer of this starship"
+          },
+          "cost_in_credits": {
+            "type": "string",
+            "example": "1000000000000",
+            "description": "The cost of this starship new, in galactic credits"
+          },
+          "length": {
+            "type": "string",
+            "example": "120000",
+            "description": "The length of this starship in meters"
+          },
+          "crew": {
+            "type": "string",
+            "example": "342,953",
+            "description": "The number of personnel needed to run or pilot this starship"
+          },
+          "passengers": {
+            "type": "string",
+            "example": "843,342",
+            "description": "The number of non-essential people this starship can transport"
+          },
+          "max_atmosphering_speed": {
+            "type": "string",
+            "example": "1000000000000",
+            "description": "The maximum speed of this starship in atmosphere"
+          },
+          "hyperdrive_rating": {
+            "type": "string",
+            "example": "4",
+            "description": "The class of this starships hyperdrive"
+          },
+          "cargo_capacity": {
+            "type": "string",
+            "example": "3000000",
+            "description": "The maximum number of kilograms that this starship can transport"
+          },
+          "consumables": {
+            "type": "string",
+            "example": "3 years",
+            "description": "The maximum length of time that this starship can provide consumables for its entire crew without having to resupply"
+          },
+          "MGLT": {
+            "type": "string",
+            "example": "10",
+            "description": "The Maximum number of Megalights this starship can travel in a standard hour"
+          },
+          "films": {
+            "example": [
+              "https://swapi.dev/api/films/1/"
+            ],
+            "description": "URLs of films that this starship has appeared in",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "pilots": {
+            "example": [
+              "https://swapi.dev/api/people/1/"
+            ],
+            "description": "URLs of people who have piloted this starship",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "created": {
+            "type": "string",
+            "example": "2014-12-10T16:36:50.509000Z",
+            "description": "The ISO 8601 date format of when this resource was created"
+          },
+          "edited": {
+            "type": "string",
+            "example": "2014-12-20T21:26:24.783000Z",
+            "description": "The ISO 8601 date format of when this resource was edited"
+          },
+          "url": {
+            "type": "string",
+            "example": "https://swapi.dev/api/starships/9/",
+            "description": "The URL of this resource"
+          }
+        },
+        "required": [
+          "name",
+          "model",
+          "starship_class",
+          "manufacturer",
+          "cost_in_credits",
+          "length",
+          "crew",
+          "passengers",
+          "max_atmosphering_speed",
+          "hyperdrive_rating",
+          "cargo_capacity",
+          "consumables",
+          "MGLT",
+          "films",
+          "pilots",
+          "created",
+          "edited",
+          "url"
+        ]
+      },
+      "Vehicle": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Sand Crawler",
+            "description": "The name of this vehicle"
+          },
+          "model": {
+            "type": "string",
+            "example": "Digger Crawler",
+            "description": "The model or official name of this vehicle"
+          },
+          "vehicle_class": {
+            "type": "string",
+            "example": "wheeled",
+            "description": "The class of this vehicle"
+          },
+          "manufacturer": {
+            "type": "string",
+            "example": "Corellia Mining Corporation",
+            "description": "The manufacturer of this vehicle"
+          },
+          "cost_in_credits": {
+            "type": "string",
+            "example": "150000",
+            "description": "The cost of this vehicle new, in galactic credits"
+          },
+          "length": {
+            "type": "string",
+            "example": "36.8",
+            "description": "The length of this vehicle in meters"
+          },
+          "crew": {
+            "type": "string",
+            "example": "46",
+            "description": "The number of personnel needed to run or pilot this vehicle"
+          },
+          "passengers": {
+            "type": "string",
+            "example": "30",
+            "description": "The number of non-essential people this vehicle can transport"
+          },
+          "max_atmosphering_speed": {
+            "type": "string",
+            "example": "30",
+            "description": "The maximum speed of this vehicle in atmosphere"
+          },
+          "cargo_capacity": {
+            "type": "string",
+            "example": "50000",
+            "description": "The maximum number of kilograms that this vehicle can transport"
+          },
+          "consumables": {
+            "type": "string",
+            "example": "2 months",
+            "description": "The maximum length of time that this vehicle can provide consumables for its entire crew without having to resupply"
+          },
+          "films": {
+            "example": [
+              "https://swapi.dev/api/films/1/"
+            ],
+            "description": "URLs of films that this vehicle has appeared in",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "pilots": {
+            "example": [
+              "https://swapi.dev/api/people/1/"
+            ],
+            "description": "URLs of people who have piloted this vehicle",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "created": {
+            "type": "string",
+            "example": "2014-12-10T15:36:25.724000Z",
+            "description": "The ISO 8601 date format of when this resource was created"
+          },
+          "edited": {
+            "type": "string",
+            "example": "2014-12-20T21:30:21.661000Z",
+            "description": "The ISO 8601 date format of when this resource was edited"
+          },
+          "url": {
+            "type": "string",
+            "example": "https://swapi.dev/api/vehicles/4/",
+            "description": "The URL of this resource"
+          }
+        },
+        "required": [
+          "name",
+          "model",
+          "vehicle_class",
+          "manufacturer",
+          "cost_in_credits",
+          "length",
+          "crew",
+          "passengers",
+          "max_atmosphering_speed",
+          "cargo_capacity",
+          "consumables",
+          "films",
+          "pilots",
+          "created",
+          "edited",
+          "url"
+        ]
+      }
+    }
+  }
+}
