@@ -6,6 +6,7 @@ import {
   Card,
   CardActionArea,
   CardContent,
+  Paper,
 } from '@mui/material';
 import PeopleIcon from '@mui/icons-material/People';
 import MovieIcon from '@mui/icons-material/Movie';
@@ -14,6 +15,7 @@ import PetsIcon from '@mui/icons-material/Pets';
 import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import { SEO } from '../components/SEO';
+import { EntityDistribution } from '../components/charts/EntityDistribution';
 
 const categories = [
   {
@@ -121,6 +123,10 @@ const HomePage = () => {
             );
           })}
         </Grid>
+
+        <Paper sx={{ height: '460px', mt: 4, p: 2 }}>
+          <EntityDistribution />
+        </Paper>
       </Box>
     </>
   );

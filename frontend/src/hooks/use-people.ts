@@ -21,6 +21,7 @@ export function usePeopleList(options: UsePeopleListOptions = {}) {
         person.name.toLowerCase().includes(searchTerm.toLowerCase())
       );
     },
+    staleTime: 1000 * 60 * 60 * 24, // 24 hours
   });
 
   return {
@@ -39,6 +40,7 @@ export function usePeopleById(id: number) {
       return response.data;
     },
     enabled: !!id,
+    staleTime: 1000 * 60 * 60 * 24, // 24 hours
   });
 
   return {

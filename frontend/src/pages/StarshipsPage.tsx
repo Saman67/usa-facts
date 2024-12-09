@@ -10,9 +10,11 @@ import {
   CircularProgress,
   Alert,
   CardActionArea,
+  Paper,
 } from '@mui/material';
 import { useStarshipsList } from '../hooks/use-starships';
 import { SEO } from '../components/SEO';
+import { StarshipComparison } from '../components/charts/StarshipComparison';
 
 const StarshipsPage = () => {
   const navigate = useNavigate();
@@ -54,6 +56,10 @@ const StarshipsPage = () => {
         >
           Star Wars Starships
         </Typography>
+
+        <Paper sx={{ height: '460px', mb: 4 }}>
+          <StarshipComparison />
+        </Paper>
 
         <TextField
           fullWidth

@@ -21,6 +21,7 @@ export function useFilmsList(options: UseFilmsListOptions = {}) {
         film.title.toLowerCase().includes(searchTerm.toLowerCase())
       );
     },
+    staleTime: 1000 * 60 * 60 * 24, // 24 hours
   });
 
   return {
@@ -39,6 +40,7 @@ export function useFilmById(id: number) {
       return response.data;
     },
     enabled: !!id,
+    staleTime: 1000 * 60 * 60 * 24, // 24 hours
   });
 
   return {

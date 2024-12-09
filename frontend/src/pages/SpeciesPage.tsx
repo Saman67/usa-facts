@@ -10,10 +10,11 @@ import {
   CircularProgress,
   Alert,
   CardActionArea,
+  Paper,
 } from '@mui/material';
 import { useSpeciesList } from '../hooks/use-species';
 import { SEO } from '../components/SEO';
-
+import { SpeciesHierarchy } from '../components/charts/SpeciesHierarchy';
 const SpeciesPage = () => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
@@ -54,6 +55,10 @@ const SpeciesPage = () => {
         >
           Star Wars Species
         </Typography>
+
+        <Paper sx={{ height: '460px', mb: 4 }}>
+          <SpeciesHierarchy />
+        </Paper>
 
         <TextField
           fullWidth

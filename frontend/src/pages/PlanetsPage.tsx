@@ -10,9 +10,11 @@ import {
   CircularProgress,
   Alert,
   CardActionArea,
+  Paper,
 } from '@mui/material';
 import { usePlanetsList } from '../hooks/use-planets';
 import { SEO } from '../components/SEO';
+import { PlanetVisualization } from '../components/charts/PlanetVisualization';
 
 const PlanetsPage = () => {
   const navigate = useNavigate();
@@ -54,6 +56,10 @@ const PlanetsPage = () => {
         >
           Star Wars Planets
         </Typography>
+
+        <Paper sx={{ height: '460px', mb: 4 }}>
+          <PlanetVisualization />
+        </Paper>
 
         <TextField
           fullWidth

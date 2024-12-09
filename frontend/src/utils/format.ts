@@ -10,6 +10,7 @@ export const formatNumericValue = (
     maximumFractionDigits?: number;
     minimumFractionDigits?: number;
     suffix?: string;
+    currency?: string;
   } = {}
 ): string => {
   // If value is already a number, convert it to string for consistent handling
@@ -26,6 +27,7 @@ export const formatNumericValue = (
   
   return new Intl.NumberFormat('en-US', {
     style: options.style || 'decimal',
+    currency: options.currency || undefined,
     maximumFractionDigits: options.maximumFractionDigits ?? 0,
     minimumFractionDigits: options.minimumFractionDigits ?? 0,
   }).format(numericValue) + (options.suffix ? ` ${options.suffix}` : '');

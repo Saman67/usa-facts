@@ -10,9 +10,11 @@ import {
   CircularProgress,
   Alert,
   CardActionArea,
+  Paper,
 } from '@mui/material';
 import { usePeopleList } from '../hooks/use-people';
 import { SEO } from '../components/SEO';
+import { CharacterComparison } from '../components/charts/CharacterComparison';
 
 const PeoplePage = () => {
   const navigate = useNavigate();
@@ -54,6 +56,10 @@ const PeoplePage = () => {
         >
           Star Wars Characters
         </Typography>
+
+        <Paper sx={{ height: '460px', mb: 4 }}>
+          <CharacterComparison />
+        </Paper>
 
         <TextField
           fullWidth

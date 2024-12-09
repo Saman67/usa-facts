@@ -10,9 +10,11 @@ import {
   CircularProgress,
   Alert,
   CardActionArea,
+  Paper,
 } from '@mui/material';
 import { useVehiclesList } from '../hooks/use-vehicles';
 import { SEO } from '../components/SEO';
+import { VehicleSpeedComparison } from '../components/charts/VehicleSpeedComparison';
 
 const VehiclesPage = () => {
   const navigate = useNavigate();
@@ -54,6 +56,10 @@ const VehiclesPage = () => {
         >
           Star Wars Vehicles
         </Typography>
+
+        <Paper sx={{ height: '400px', mb: 4 }}>
+          <VehicleSpeedComparison />
+        </Paper>
 
         <TextField
           fullWidth
