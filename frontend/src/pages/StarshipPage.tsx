@@ -12,6 +12,7 @@ import {
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useStarshipById } from '../hooks/use-starships';
 import { SEO } from '../components/SEO';
+import { formatNumericValue } from '../utils/format';
 
 const StarshipPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -77,8 +78,8 @@ const StarshipPage = () => {
     <>
       <SEO 
         title={starship.name}
-        description={`Explore the ${starship.name}, a ${starship.starship_class} class starship manufactured by ${starship.manufacturer}. This ${starship.model} model features a hyperdrive rating of ${starship.hyperdrive_rating}.`}
-        type="vehicle"
+        description={`Learn about the ${starship.name}, a ${starship.starship_class} class starship manufactured by ${starship.manufacturer}.`}
+        type="article"
       />
       <Box>
         <Button
@@ -98,7 +99,7 @@ const StarshipPage = () => {
             <Grid container spacing={3}>
               <Grid item xs={12} md={6}>
                 <Typography variant="h6" gutterBottom color="primary">
-                  Basic Information
+                  General Information
                 </Typography>
                 <Typography variant="body1" paragraph>
                   <strong>Model:</strong> {starship.model}
@@ -110,45 +111,40 @@ const StarshipPage = () => {
                   <strong>Class:</strong> {starship.starship_class}
                 </Typography>
                 <Typography variant="body1" paragraph>
-                  <strong>Cost:</strong>{' '}
-                  {parseInt(starship.cost_in_credits).toLocaleString()} credits
+                  <strong>Cost:</strong> {formatNumericValue(starship.cost_in_credits)}
                 </Typography>
               </Grid>
 
               <Grid item xs={12} md={6}>
                 <Typography variant="h6" gutterBottom color="primary">
-                  Specifications
+                  Technical Specifications
                 </Typography>
                 <Typography variant="body1" paragraph>
-                  <strong>Length:</strong> {starship.length} meters
+                  <strong>Length:</strong> {formatNumericValue(starship.length, { suffix: 'meters' })}
                 </Typography>
                 <Typography variant="body1" paragraph>
-                  <strong>Max Speed:</strong> {starship.max_atmosphering_speed}
+                  <strong>Crew:</strong> {formatNumericValue(starship.crew, { suffix: 'crew' })}
                 </Typography>
                 <Typography variant="body1" paragraph>
-                  <strong>Hyperdrive Rating:</strong> {starship.hyperdrive_rating}
+                  <strong>Passengers:</strong> {formatNumericValue(starship.passengers, { suffix: 'passengers' })}
                 </Typography>
                 <Typography variant="body1" paragraph>
-                  <strong>MGLT:</strong> {starship.MGLT}
+                  <strong>Cargo Capacity:</strong> {formatNumericValue(starship.cargo_capacity, { suffix: 'kg' })}
                 </Typography>
               </Grid>
 
-              <Grid item xs={12} md={6}>
+              <Grid item xs={12}>
                 <Typography variant="h6" gutterBottom color="primary">
-                  Capacity
+                  Performance
                 </Typography>
                 <Typography variant="body1" paragraph>
-                  <strong>Crew:</strong> {starship.crew}
+                  <strong>Max Atmosphering Speed:</strong> {formatNumericValue(starship.max_atmosphering_speed, { suffix: 'km/h' })}
                 </Typography>
                 <Typography variant="body1" paragraph>
-                  <strong>Passengers:</strong> {starship.passengers}
+                  <strong>Hyperdrive Rating:</strong> {formatNumericValue(starship.hyperdrive_rating)}
                 </Typography>
                 <Typography variant="body1" paragraph>
-                  <strong>Cargo Capacity:</strong>{' '}
-                  {parseInt(starship.cargo_capacity).toLocaleString()} kg
-                </Typography>
-                <Typography variant="body1" paragraph>
-                  <strong>Consumables:</strong> {starship.consumables}
+                  <strong>MGLT:</strong> {formatNumericValue(starship.MGLT, { suffix: 'MGLT' })}
                 </Typography>
               </Grid>
             </Grid>

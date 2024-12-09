@@ -12,6 +12,7 @@ import {
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { usePlanetById } from '../hooks/use-planets';
 import { SEO } from '../components/SEO';
+import { formatNumericValue } from '../utils/format';
 
 const PlanetPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -77,8 +78,8 @@ const PlanetPage = () => {
     <>
       <SEO 
         title={planet.name}
-        description={`Explore ${planet.name}, a planet in the Star Wars galaxy. With a population of ${parseInt(planet.population).toLocaleString()}, this ${planet.terrain} world has a ${planet.climate} climate.`}
-        type="place"
+        description={`Learn about ${planet.name}, a planet with a ${planet.climate} climate and ${planet.terrain} terrain.`}
+        type="article"
       />
       <Box>
         <Button
@@ -107,26 +108,25 @@ const PlanetPage = () => {
                   <strong>Terrain:</strong> {planet.terrain}
                 </Typography>
                 <Typography variant="body1" paragraph>
-                  <strong>Surface Water:</strong> {planet.surface_water}%
+                  <strong>Surface Water:</strong> {formatNumericValue(planet.surface_water, { suffix: '%' })}
                 </Typography>
                 <Typography variant="body1" paragraph>
-                  <strong>Diameter:</strong> {parseInt(planet.diameter).toLocaleString()} km
+                  <strong>Diameter:</strong> {formatNumericValue(planet.diameter, { suffix: 'km' })}
                 </Typography>
               </Grid>
 
               <Grid item xs={12} md={6}>
                 <Typography variant="h6" gutterBottom color="primary">
-                  Planetary Data
+                  Population & Orbital Data
                 </Typography>
                 <Typography variant="body1" paragraph>
-                  <strong>Population:</strong>{' '}
-                  {parseInt(planet.population).toLocaleString() || 'Unknown'}
+                  <strong>Population:</strong> {formatNumericValue(planet.population)}
                 </Typography>
                 <Typography variant="body1" paragraph>
-                  <strong>Rotation Period:</strong> {planet.rotation_period} hours
+                  <strong>Rotation Period:</strong> {formatNumericValue(planet.rotation_period, { suffix: 'hours' })}
                 </Typography>
                 <Typography variant="body1" paragraph>
-                  <strong>Orbital Period:</strong> {planet.orbital_period} days
+                  <strong>Orbital Period:</strong> {formatNumericValue(planet.orbital_period, { suffix: 'days' })}
                 </Typography>
                 <Typography variant="body1" paragraph>
                   <strong>Gravity:</strong> {planet.gravity}

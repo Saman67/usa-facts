@@ -12,6 +12,7 @@ import {
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useSpeciesById } from '../hooks/use-species';
 import { SEO } from '../components/SEO';
+import { formatNumericValue } from '../utils/format';
 
 const SpeciesDetailPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -63,7 +64,7 @@ const SpeciesDetailPage = () => {
         />
         <Button
           startIcon={<ArrowBackIcon />}
-          onClick={() => navigate('/species')}
+          onClick={handleBack}
           sx={{ mb: 3 }}
         >
           Back to Species
@@ -77,8 +78,8 @@ const SpeciesDetailPage = () => {
     <>
       <SEO 
         title={species.name}
-        description={`Learn about the ${species.name}, a ${species.classification} species from the Star Wars universe. Native to ${species.homeworld || 'unknown origins'}, they typically live for ${species.average_lifespan} years.`}
-        type="profile"
+        description={`Learn about the ${species.name}, a ${species.classification} species from ${species.homeworld || 'unknown origins'}.`}
+        type="article"
       />
       <Box>
         <Button
@@ -98,7 +99,7 @@ const SpeciesDetailPage = () => {
             <Grid container spacing={3}>
               <Grid item xs={12} md={6}>
                 <Typography variant="h6" gutterBottom color="primary">
-                  Basic Information
+                  General Information
                 </Typography>
                 <Typography variant="body1" paragraph>
                   <strong>Classification:</strong> {species.classification}
@@ -109,9 +110,6 @@ const SpeciesDetailPage = () => {
                 <Typography variant="body1" paragraph>
                   <strong>Language:</strong> {species.language}
                 </Typography>
-                <Typography variant="body1" paragraph>
-                  <strong>Average Lifespan:</strong> {species.average_lifespan} years
-                </Typography>
               </Grid>
 
               <Grid item xs={12} md={6}>
@@ -119,7 +117,10 @@ const SpeciesDetailPage = () => {
                   Physical Characteristics
                 </Typography>
                 <Typography variant="body1" paragraph>
-                  <strong>Average Height:</strong> {species.average_height} cm
+                  <strong>Average Height:</strong> {formatNumericValue(species.average_height, { suffix: 'cm' })}
+                </Typography>
+                <Typography variant="body1" paragraph>
+                  <strong>Average Lifespan:</strong> {formatNumericValue(species.average_lifespan, { suffix: 'years' })}
                 </Typography>
                 <Typography variant="body1" paragraph>
                   <strong>Skin Colors:</strong> {species.skin_colors}

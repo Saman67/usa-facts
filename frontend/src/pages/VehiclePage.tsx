@@ -12,6 +12,7 @@ import {
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useVehicleById } from '../hooks/use-vehicles';
 import { SEO } from '../components/SEO';
+import { formatNumericValue } from '../utils/format';
 
 const VehiclePage = () => {
   const { id } = useParams<{ id: string }>();
@@ -63,7 +64,7 @@ const VehiclePage = () => {
         />
         <Button
           startIcon={<ArrowBackIcon />}
-          onClick={() => navigate('/vehicles')}
+          onClick={handleBack}
           sx={{ mb: 3 }}
         >
           Back to Vehicles
@@ -77,8 +78,8 @@ const VehiclePage = () => {
     <>
       <SEO 
         title={vehicle.name}
-        description={`Explore the ${vehicle.name}, a ${vehicle.vehicle_class} manufactured by ${vehicle.manufacturer}. This ${vehicle.model} model can reach speeds of ${vehicle.max_atmosphering_speed} and requires a crew of ${vehicle.crew}.`}
-        type="vehicle"
+        description={`Learn about the ${vehicle.name}, a ${vehicle.vehicle_class} class vehicle manufactured by ${vehicle.manufacturer}.`}
+        type="article"
       />
       <Box>
         <Button
@@ -98,7 +99,7 @@ const VehiclePage = () => {
             <Grid container spacing={3}>
               <Grid item xs={12} md={6}>
                 <Typography variant="h6" gutterBottom color="primary">
-                  Basic Information
+                  General Information
                 </Typography>
                 <Typography variant="body1" paragraph>
                   <strong>Model:</strong> {vehicle.model}
@@ -110,39 +111,34 @@ const VehiclePage = () => {
                   <strong>Class:</strong> {vehicle.vehicle_class}
                 </Typography>
                 <Typography variant="body1" paragraph>
-                  <strong>Cost:</strong>{' '}
-                  {parseInt(vehicle.cost_in_credits).toLocaleString()} credits
+                  <strong>Cost:</strong> {formatNumericValue(vehicle.cost_in_credits)}
                 </Typography>
               </Grid>
 
               <Grid item xs={12} md={6}>
                 <Typography variant="h6" gutterBottom color="primary">
-                  Specifications
+                  Technical Specifications
                 </Typography>
                 <Typography variant="body1" paragraph>
-                  <strong>Length:</strong> {vehicle.length} meters
+                  <strong>Length:</strong> {formatNumericValue(vehicle.length, {suffix: 'meters'})}
                 </Typography>
                 <Typography variant="body1" paragraph>
-                  <strong>Max Speed:</strong> {vehicle.max_atmosphering_speed}
+                  <strong>Crew:</strong> {formatNumericValue(vehicle.crew, {suffix: 'crew'})}
                 </Typography>
                 <Typography variant="body1" paragraph>
-                  <strong>Crew:</strong> {vehicle.crew}
+                  <strong>Passengers:</strong> {formatNumericValue(vehicle.passengers, {suffix: 'passengers'})}
                 </Typography>
                 <Typography variant="body1" paragraph>
-                  <strong>Passengers:</strong> {vehicle.passengers}
+                  <strong>Cargo Capacity:</strong> {formatNumericValue(vehicle.cargo_capacity, {suffix: 'kg'})}
                 </Typography>
               </Grid>
 
-              <Grid item xs={12} md={6}>
+              <Grid item xs={12}>
                 <Typography variant="h6" gutterBottom color="primary">
-                  Capacity
+                  Performance
                 </Typography>
                 <Typography variant="body1" paragraph>
-                  <strong>Cargo Capacity:</strong>{' '}
-                  {parseInt(vehicle.cargo_capacity).toLocaleString()} kg
-                </Typography>
-                <Typography variant="body1" paragraph>
-                  <strong>Consumables:</strong> {vehicle.consumables}
+                  <strong>Max Atmosphering Speed:</strong> {formatNumericValue(vehicle.max_atmosphering_speed, {suffix: 'km/h'})}
                 </Typography>
               </Grid>
             </Grid>
