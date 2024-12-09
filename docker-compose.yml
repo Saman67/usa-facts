@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: star-wars-backend
+    ports:
+      - "3010:3010"
+    environment:
+      - NODE_ENV=production
+    networks:
+      - star-wars-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: star-wars-frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    networks:
+      - star-wars-network
+
+networks:
+  star-wars-network:
+    driver: bridge 

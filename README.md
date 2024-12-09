@@ -13,8 +13,8 @@ A full-stack application that allows users to explore the Star Wars universe usi
 ## Prerequisites
 
 Before you begin, ensure you have the following installed:
-- Node.js (20.9.0 or higher)
-- npm or yarn
+- Node.js (20.9.0 or higher) and npm/yarn for local development
+- Docker and Docker Compose for containerized deployment
 
 ## Project Structure
 
@@ -22,7 +22,31 @@ The project consists of two main directories:
 - `backend/` - NestJS application that serves as an API proxy to SWAPI
 - `frontend/` - React application built with Vite and Material-UI
 
-## Getting Started
+## Running with Docker Compose
+
+The easiest way to run the application is using Docker Compose:
+
+1. Make sure Docker and Docker Compose are installed on your system
+2. Clone the repository
+3. Run the following command in the root directory:
+
+```bash
+docker compose up --build
+```
+
+The application will be available at:
+- Frontend: http://localhost:3000
+- Backend API: http://localhost:3010
+- API Documentation: http://localhost:3010/api
+
+To stop the application:
+```bash
+docker compose down
+```
+
+## Local Development Setup
+
+If you prefer to run the applications locally for development:
 
 ### Backend Setup
 
